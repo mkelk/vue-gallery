@@ -13,9 +13,10 @@
     <a class="next">
       <slot name="next">›</slot>
     </a>
-    <a v-if="!carousel" class="close">
-      <slot name="close">Z</slot>
-    </a>
+    <div v-if="!carousel" class="custom-controls">
+      <button @click="closeGallery" class="back-button">BACK</button>
+      <button @click="goHome" class="home-button">HOME</button>
+    </div>
     <ol v-if="!carousel" class="indicator"></ol>
     <a v-if="carousel" class="play-pause"></a>
   </div>
@@ -138,6 +139,15 @@
           }
         }
       },
+      closeGallery() {
+        if (this.instance) {
+          this.instance.close();
+        }
+        this.$emit('close');
+      },
+      goHome() {
+        this.$emit('home');
+      }
     },
   };
 </script>
@@ -152,5 +162,27 @@
   }
   .blueimp-gallery-controls > .description {
     display: block;
+  }
+  .blueimp-gallery > .custom-controls {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .custom-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .back-button {
+    background-color: #4285F4;
+  }
+  .home-button {
+    background-color: #34A853;
   }
 </style>
