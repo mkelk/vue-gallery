@@ -14,7 +14,7 @@
       <slot name="next">›</slot>
     </a>
     <a v-if="!carousel" class="close">
-      <slot name="close">×</slot>
+      <slot name="close">Z</slot>
     </a>
     <ol v-if="!carousel" class="indicator"></ol>
     <a v-if="carousel" class="play-pause"></a>
